@@ -148,13 +148,14 @@ Import Libraries
 MCUSerialBridge Class
 ---------------------
 
-Define the ROS 2 node using a class-based (ROS-nish) approach.
+Define the ROS 2 node using a class-based (ROS-style) approach.
 
 .. code-block:: python
 
    class MCUSerialBridge(Node):
 
 This node encapsulates all logic related to:
+
 - Serial communication
 - ROS publisher and subscriber
 - Thread management
@@ -365,6 +366,7 @@ RX Loop Condition
    while self.running and rclpy.ok():
 
 The loop stops when:
+
 - Node is shutting down
 - ROS 2 context is no longer valid
 
@@ -495,6 +497,28 @@ Optional Python entry point.
        main()
 
 This is required for Python execution and used by ``ros2 run``.
+
+Setup Node
+----------
+
+Place this in setup.py > entry points > console scripts
+
+.. code-block:: python
+
+    'mcu_serial_bridge = ros2_communication.mcu_serial_bridge:main',
+
+
+Run Node
+--------
+
+.. code-block:: bash
+
+    ros2 run ros2 communication mcu_serial_bridge --ros-args -p port:='/dev/ttyACM0' -p baudrate:=9600 -p timeout:=0.05
+
+How to see MCU port:
+
+1. Connect MCU into computer
+2. Open bash, type ``>$ ls /dev/ttyACM*`` (for Arduino) and ``>$ ls /dev/ttyUSB*`` (for ESP32)
 
 
 Summary

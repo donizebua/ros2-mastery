@@ -1,5 +1,5 @@
 Serial Communication Node (ROS 2 + pySerial) Using Procedural Approach
-===================================================================
+======================================================================
 
 This section explains a simple ROS 2 node that communicates with a microcontroller
 using serial communication (``pySerial``).
